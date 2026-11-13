@@ -1,0 +1,18 @@
+# Dependencias
+node_modules
+
+# Compilado
+dist
+build
+coverage
+
+# Variables de entorno (contraseñas)
+.env
+
+# Logs
+*.log
+
+# Editor y sistema
+.vscode
+.idea
+.DS_Store
