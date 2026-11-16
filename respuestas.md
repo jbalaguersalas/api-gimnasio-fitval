@@ -2,13 +2,8 @@
 
 ## Ejercicio 0 — Push directo a `main`
 
-Línea importante del error:
+remote: error: GH013: Repository rule violations found for refs/heads/main. Changes must be made through a pull request.
 
-```text
-(pega aquí la línea)
-```
-
----
 
 ## Pregunta 1 — PostgreSQL parado
 
