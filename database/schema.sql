@@ -1,6 +1,3 @@
--- Base de datos del gimnasio FitVal (la de la entrega de SQL, en inglés)
--- Se puede ejecutar todas las veces que quieras: borra y vuelve a crear todo.
-
 DROP TABLE IF EXISTS users, trainer_specialties, specialties, bookings, classes, trainers, cards, members, plans;
 
 CREATE TABLE plans (
@@ -60,8 +57,6 @@ CREATE TABLE trainer_specialties (
   specialty_id INTEGER NOT NULL REFERENCES specialties(id),
   UNIQUE (trainer_id, specialty_id)
 );
-
--- Datos de prueba (los mismos de la entrega de SQL)
 
 INSERT INTO plans (name, monthly_price) VALUES
   ('Básico', 29.90),
@@ -124,5 +119,3 @@ INSERT INTO specialties (name) VALUES
 
 INSERT INTO trainer_specialties (trainer_id, specialty_id) VALUES
   (1, 1), (1, 5), (2, 2), (2, 3), (3, 3), (3, 4), (4, 5);
-
--- PARTE 4: aquí irá la tabla users (apartado 4.1)

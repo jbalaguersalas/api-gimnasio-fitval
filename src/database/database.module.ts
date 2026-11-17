@@ -4,7 +4,6 @@ import { Pool } from 'pg';
 function createPool() {
   const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-  // si se cae PostgreSQL, que no se caiga la API
   pool.on('error', (error) => console.error('PostgreSQL:', error.message));
 
   return pool;
