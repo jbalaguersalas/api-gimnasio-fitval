@@ -17,7 +17,9 @@ Al cliente le llega un 500 y ya. En la terminal sale el error real (`ECONNREFUSE
 
 ¿Cuántas clases salen con cada versión? ¿Qué ha pasado con la consulta en la versión mala?
 
+Con la mala salen las 7, con la buena 0.
 
+Le llega esto: `... WHERE c.activity ILIKE '%zzz' OR 1=1 --%' ORDER BY c.starts_at`. El `OR 1=1` siempre es verdad y el `--` comenta el resto. Con `$1` el texto se busca tal cual y no cambia la consulta.
 
 
 ## Pregunta 3
