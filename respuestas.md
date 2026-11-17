@@ -42,6 +42,7 @@ Porque la petición está bien hecha, el problema es que choca con los datos que
 
 ¿Qué datos lleva dentro el token de Ana? ¿Por qué no metemos también el rol?
 
+Lleva `{ "sub": 1, "iat": ..., "exp": ... }`: el id de Ana y cuándo se creó y caduca. No va el rol porque si cambia, el token seguiría con el viejo. Mejor mirarlo en la base de datos cada vez. Además el token se puede leer, no es secreto.
 
 
 
