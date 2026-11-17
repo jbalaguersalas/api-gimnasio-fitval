@@ -1,60 +1,47 @@
-# Respuestas — API FitVal
+# Respuestas
 
-## Ejercicio 0 — Push directo a `main`
 
-Línea importante del error:
+## Ejercicio 0
 
-```text
-(pega aquí la línea)
-```
+remote: error: GH013: Repository rule violations found for refs/heads/main. Changes must be made through a pull request.
 
----
 
-## Pregunta 1 — PostgreSQL parado
+## Pregunta 1
 
-¿Qué código recibe el cliente? ¿Qué se ve en la terminal que el cliente no ve? ¿Por qué es mejor así?
+¿Qué código recibe el cliente con PostgreSQL parado? ¿Qué ves en la terminal que el cliente no ve? ¿Por qué es mejor así?
 
-> 
+Al cliente le llega un 500 y ya. En la terminal sale el error real (`ECONNREFUSED`, no conecta con la base de datos). Mejor así: el cliente no tiene por qué ver eso, yo sí.
 
-## Pregunta 2 — Inyección SQL
 
-| Versión | Clases que salen |
-|---|---|
-| Mala (`${activity}`) |  |
-| Buena (`$1`) |  |
+## Pregunta 2
 
-Consulta tal y como le llega a PostgreSQL en la versión mala:
+¿Cuántas clases salen con cada versión? ¿Qué ha pasado con la consulta en la versión mala?
 
-```sql
 
-```
 
-Qué ha pasado:
 
-> 
+## Pregunta 3
 
-## Pregunta 3 — ¿Para qué comprobar que el monitor existe?
+PostgreSQL ya tiene una clave ajena en `trainer_id`. ¿Para qué comprobamos en la API que el monitor existe? ¿Qué recibiría el cliente si no lo hiciéramos?
 
-> 
 
-## Pregunta 4 — ¿Por qué `409` y no `400`?
 
-> 
 
-## Pregunta 5 — Token en jwt.io
+## Pregunta 4
 
-Datos que lleva dentro:
+¿Por qué borrar una clase con reservas es `409` y no `400`?
 
-```json
 
-```
 
-¿Por qué no metemos el rol?
 
-> 
+## Pregunta 5
 
-## Pregunta 6 — Recepción pasa a `staff` sin volver a hacer login
+¿Qué datos lleva dentro el token de Ana? ¿Por qué no metemos también el rol?
 
-¿Por qué funciona? ¿Qué pasaría si el rol fuera dentro del token?
 
-> 
+
+
+## Pregunta 6
+
+El token de recepción se creó cuando todavía era `member`. ¿Por qué funciona ahora sin volver a hacer login? ¿Qué pasaría si el rol fuera dentro del token?
+
