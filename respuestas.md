@@ -26,6 +26,7 @@ Le llega esto: `... WHERE c.activity ILIKE '%zzz' OR 1=1 --%' ORDER BY c.starts_
 
 PostgreSQL ya tiene una clave ajena en `trainer_id`. ¿Para qué comprobamos en la API que el monitor existe? ¿Qué recibiría el cliente si no lo hiciéramos?
 
+Para devolver un 400 con un mensaje claro, porque el error es del cliente. Sin comprobarlo, PostgreSQL da error de clave ajena y al cliente le llega un 500, como si fallara el servidor.
 
 
 
@@ -33,6 +34,7 @@ PostgreSQL ya tiene una clave ajena en `trainer_id`. ¿Para qué comprobamos en 
 
 ¿Por qué borrar una clase con reservas es `409` y no `400`?
 
+Porque la petición está bien hecha, el problema es que choca con los datos que hay (las reservas). 400 sería si el cliente mandara algo mal.
 
 
 
