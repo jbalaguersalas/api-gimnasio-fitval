@@ -50,3 +50,7 @@ Lleva `{ "sub": 1, "iat": ..., "exp": ... }`: el id de Ana y cuándo se creó y 
 
 El token de recepción se creó cuando todavía era `member`. ¿Por qué funciona ahora sin volver a hacer login? ¿Qué pasaría si el rol fuera dentro del token?
 
+Porque el token solo lleva el id, y el rol se mira en la base de datos en cada petición, así que ya sale staff. Si el rol fuera en el token, seguiría poniendo member hasta volver a hacer login (y al revés, alguien a quien le quitan staff podría seguir creando clases).
+
+
+
