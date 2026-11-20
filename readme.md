@@ -65,16 +65,6 @@ La rama `main` está protegida, así que cada parte la he hecho en su rama y la 
 
 Las respuestas a las preguntas de la práctica están en [`respuestas.md`](respuestas.md).
 
-## He aprendido
-
-**Qué es una inyección SQL.** Si busco clases con el texto `zzz' OR 1=1 --` y lo pego tal cual en la consulta, salen las 7 clases en vez de ninguna. Con `$1`, PostgreSQL busca ese texto como texto y no sale nada.
-
-**A comprobar antes de que falle la base de datos.** PostgreSQL ya rechaza una clase con un monitor que no existe, pero el cliente recibiría un 500. Si lo compruebo yo antes, le devuelvo un 400 con un mensaje que entiende.
-
-**A no meter el rol en el token.** El token solo lleva el id del usuario. El rol lo miro en la base de datos en cada petición. Así, si a alguien le dan permisos de personal, le funcionan sin volver a hacer login, y si se los quitan, los pierde al momento.
-
-**Que 409 y 400 son cosas distintas.** Borrar una clase con reservas es una petición bien hecha que choca con los datos que hay, así que devuelvo 409.
-
 ## Tecnologías
 
 NestJS, PostgreSQL, Docker y GitHub.
