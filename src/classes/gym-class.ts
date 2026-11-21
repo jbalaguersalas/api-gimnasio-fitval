@@ -16,6 +16,14 @@ export interface GymClass {
   trainerName: string;
 }
 
+export interface GymClassPage {
+  data: GymClass[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 export function toGymClass(row: GymClassRow): GymClass {
   return {
     id: row.id,
