@@ -60,3 +60,21 @@ Porque el token solo lleva el id, y el rol se mira en la base de datos en cada p
 
 Porque el `Pool` es falso: el `query` responde lo que yo le digo y no se conecta a nada. Lo que no puede comprobar es si el SQL está bien escrito o si la base de datos responde de verdad lo que pongo en el falso.
 
+## Pregunta 8
+
+¿Por qué el correo lleva `Date.now()`? ¿Qué pasaría la segunda vez que ejecutas los tests con un correo fijo?
+
+Para que cada vez sea un correo nuevo. Con uno fijo, la segunda vez el registro da 409 porque ya existe (el login seguiría bien, pero el test depende de lo que quedó de antes).
+
+## Pregunta 9
+
+En la Parte 2 rompiste la API pegando un texto dentro del SQL. Aquí el `ORDER BY` lleva `${...}`. ¿Por qué no es peligroso? Prueba `?sort=id;DROP TABLE classes` y explica qué lo para.
+
+Porque lo que va en el `${...}` no es lo que escribe el cliente, sale de `SORT_COLUMNS`. Y el DTO con `@IsIn` solo deja pasar `startsAt`, `activity` o `spots`. Con `?sort=id;DROP TABLE classes` el `ValidationPipe` da 400 y la consulta ni se ejecuta.
+
+## Pregunta 10
+
+¿Por qué el login tiene un límite más duro que el resto de rutas? ¿Qué ataque frena? ¿Qué pasaría en Render sin `app.set('trust proxy', 1)`?
+
+Porque en el login se pueden probar contraseñas una detrás de otra (fuerza bruta). Con 5 por minuto no da tiempo a probar muchas. Sin `trust proxy`, en Render todas las peticiones parecen venir de la IP del proxy, así que el límite lo compartirían todos los usuarios y se bloquearía a todos a la vez.
+

@@ -78,4 +78,20 @@ describe('ClassesService', () => {
       [1],
     );
   });
+
+  it('findPage devuelve el total y las páginas', async () => {
+    fakePool.query
+      .mockResolvedValueOnce({ rows: [spinningRow] })
+      .mockResolvedValueOnce({ rows: [{ total: 7 }] });
+
+    const page = await service.findPage({
+      page: 1,
+      limit: 3,
+      sort: 'startsAt',
+      order: 'asc',
+    });
+
+    expect(page.total).toBe(7);
+    expect(page.totalPages).toBe(3);
+  });
 });
