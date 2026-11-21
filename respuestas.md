@@ -54,3 +54,9 @@ Porque el token solo lleva el id, y el rol se mira en la base de datos en cada p
 
 
 
+## Pregunta 7
+
+¿Por qué el test del 6.4 no necesita PostgreSQL? ¿Qué no puede comprobar un test con un `Pool` falso?
+
+Porque el `Pool` es falso: el `query` responde lo que yo le digo y no se conecta a nada. Lo que no puede comprobar es si el SQL está bien escrito o si la base de datos responde de verdad lo que pongo en el falso.
+
