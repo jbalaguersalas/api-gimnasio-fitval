@@ -10,12 +10,14 @@ import {
   UseGuards,
   Version,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 import { StaffGuard } from '../auth/staff.guard';
 import { ClassesService } from './classes.service';
 import { CreateClassDto } from './dto/create-class.dto';
 import { ListClassesQueryDto } from './dto/list-classes-query.dto';
 
+@ApiTags('classes')
 @Controller('classes')
 export class ClassesController {
   constructor(private readonly classesService: ClassesService) {}
@@ -38,12 +40,14 @@ export class ClassesController {
 
   @Post()
   @UseGuards(AuthGuard, StaffGuard)
+  @ApiBearerAuth()
   create(@Body() dto: CreateClassDto) {
     return this.classesService.create(dto);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard, StaffGuard)
+  @ApiBearerAuth()
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.classesService.remove(id);
   }

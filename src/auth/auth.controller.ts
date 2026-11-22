@@ -7,12 +7,14 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
 import { AuthGuard, type AuthRequest } from './auth.guard';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -31,6 +33,7 @@ export class AuthController {
 
   @Get('me')
   @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   me(@Req() request: AuthRequest) {
     return request.user;
   }
