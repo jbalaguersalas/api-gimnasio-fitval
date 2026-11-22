@@ -10,6 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.set('trust proxy', 1);
   configureApp(app);
+  app.useStaticAssets('uploads', { prefix: '/uploads' });
   await app.listen(process.env.PORT ?? 3000);
 }
 void bootstrap();
