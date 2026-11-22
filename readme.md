@@ -6,6 +6,13 @@ He construido la API que usaría la web del gimnasio FitVal: guarda los datos de
 
 La base de datos es la del gimnasio que diseñé antes en SQL: planes, socios, tarjetas, monitores, clases y reservas. Encima he montado la API con NestJS y le he añadido usuarios con contraseña.
 
+## En internet
+
+- API: https://api-gimnasio-fitval.onrender.com/api/v1/health
+- Documentación (Swagger): https://api-gimnasio-fitval.onrender.com/docs
+
+Está en Render con la base de datos en Supabase. La primera petición puede tardar un minuto si la API estaba dormida.
+
 ## Qué hace
 
 - Muestra los planes y sus precios.
@@ -15,19 +22,22 @@ La base de datos es la del gimnasio que diseñé antes en SQL: planes, socios, t
 
 ## Rutas
 
-Todas empiezan por `/api`.
+Todas empiezan por `/api/v1` (la lista de clases por páginas está en `/api/v2/classes`).
 
 | Método | Ruta | Quién puede | Qué hace |
 |---|---|---|---|
-| GET | `/api/health` | Cualquiera | Comprueba que la API llega a PostgreSQL |
-| GET | `/api/plans` | Cualquiera | Planes ordenados de más barato a más caro |
-| GET | `/api/classes` | Cualquiera | Horario de clases. Con `?activity=yoga` filtra por actividad |
-| GET | `/api/classes/:id` | Cualquiera | Una clase con el nombre de su monitor |
-| POST | `/api/classes` | Personal | Crea una clase (`activity`, `room`, `startsAt`, `spots`, `trainerId`) |
-| DELETE | `/api/classes/:id` | Personal | Borra una clase si no tiene reservas |
-| POST | `/api/auth/register` | Cualquiera | Crea un usuario con email y contraseña (mínimo 8 caracteres) |
-| POST | `/api/auth/login` | Cualquiera | Devuelve un `accessToken` |
-| GET | `/api/auth/me` | Con token | Devuelve el usuario del token |
+| GET | `/health` | Cualquiera | Comprueba que la API llega a PostgreSQL |
+| GET | `/plans` | Cualquiera | Planes ordenados de más barato a más caro |
+| GET | `/classes` | Cualquiera | Horario de clases. Con `?activity=yoga` filtra por actividad |
+| GET | `/classes/:id` | Cualquiera | Una clase con el nombre de su monitor |
+| POST | `/classes` | Personal | Crea una clase (`activity`, `room`, `startsAt`, `spots`, `trainerId`) |
+| DELETE | `/classes/:id` | Personal | Borra una clase si no tiene reservas |
+| POST | `/auth/register` | Cualquiera | Crea un usuario con email y contraseña (mínimo 8 caracteres) |
+| POST | `/auth/login` | Cualquiera | Devuelve un `accessToken` |
+| GET | `/auth/me` | Con token | Devuelve el usuario del token |
+| GET | `/trainers/:id` | Cualquiera | Un monitor con sus especialidades |
+| POST | `/trainers` | Personal | Da de alta un monitor con sus especialidades |
+| POST | `/trainers/:id/photo` | Personal | Sube la foto del monitor (campo `photo`) |
 
 Las rutas protegidas piden la cabecera `Authorization: Bearer <token>`. Todo usuario nuevo se crea como `member`. Para que alguien sea personal hay que cambiarle el rol a `staff` en la tabla `users`.
 
